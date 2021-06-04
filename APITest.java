@@ -15,7 +15,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         JFrame frame2 = new JFrame("Physics Application - Options");
         
 
-}
+    }
     
 
     public static void formulas(){ //Formula screen method
