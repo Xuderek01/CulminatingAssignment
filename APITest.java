@@ -6,22 +6,26 @@ import java.awt.event.*;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.lang.*;
+import java.util.*;
+import java.io.*;
 class APITest extends Frame implements ActionListener, WindowListener{ //Class that extends frame and inplements actionListener and WindowListener
 
-    public static double v1 = 0; // initial velocity
-	public static double v2 = 0; // final velocity
-	public static double t = 0; // time
-	public static double a; // acceleration
-	public static double g = 0; // gravity
-	public static double dis = 0; // displacement
-	public static double f = 0; // force
-	public static double work = 0; // work
-	public static double k = 0; // spring constant
-	public static double mass = 0; // mass
-	public static double tv = 0; // total velocity
-	public static double h = 0; // height
-	public static double result; //solution of the equation
-	public static int exponent; // exponent
+    public static double v1 = 0;
+	public static double v2 = 0;
+	public static double t = 0;
+	public static double a;
+	public static double m = 0;
+	public static double g = 0;
+	public static double dis = 0;
+	public static double f = 0;
+	public static double work = 0;
+	public static double k = 0;
+	public static double mass = 0;
+	public static double tv = 0;
+	public static double h = 0;
+	public static double result;
+	public static int exponent;
     public static void main(String[] args){ //Main method
         menu(); //Calls on menu method
     }
@@ -44,7 +48,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
             } 
         });
 
-        bGraph = new JButton("Bar Graoh");
+        bGraph = new JButton("Energy Bar Graph");
         bGraph.setBounds(300, 375, 400, 120);
 
         vCGraph = new JButton("Voltage-Current Graph");
@@ -79,37 +83,38 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         String option9 = "Potential Kinetic Energy Formula";
         String option10 = "Potential Elastic Energy Formula";
 
-        acceleration = new JTextField();
+
+        acceleration = new JTextField("10");
         acceleration.setBounds(0, 0, 0, 0);
         acceleration.setVisible(false);
-        iVelo = new JTextField();
+        iVelo = new JTextField("12");
         iVelo.setBounds(0, 0, 0, 0);
         iVelo.setVisible(false);
-        fVelo = new JTextField();
+        fVelo = new JTextField("13");
         fVelo.setBounds(0, 0, 0, 0);
         fVelo.setVisible(false);
-        displace = new JTextField();
+        displace = new JTextField("1");
         displace.setBounds(0, 0, 0, 0);
         displace.setVisible(false);
-        force = new JTextField();
+        force = new JTextField("1");
         force.setBounds(0, 0, 0, 0);
         force.setVisible(false);
-        massText = new JTextField();
+        massText = new JTextField("1");
         massText.setBounds(0, 0, 0, 0);
         massText.setVisible(false);
-        time = new JTextField();
+        time = new JTextField("1");
         time.setBounds(0, 0, 0, 0);
         time.setVisible(false);
-        velocity = new JTextField();
+        velocity = new JTextField("1");
         velocity.setBounds(0, 0, 0, 0);
         velocity.setVisible(false);
-        height = new JTextField();
+        height = new JTextField("1");
         height.setBounds(0, 0, 0, 0);
         height.setVisible(false);
-        sConstant = new JTextField();
+        sConstant = new JTextField("1");
         sConstant.setBounds(0, 0, 0, 0);
         sConstant.setVisible(false);
-        workText = new JTextField();
+        workText = new JTextField("1");
         workText.setBounds(0, 0, 0, 0);
 
 
@@ -169,6 +174,12 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     iVelo.setVisible(true);
                     time.setBounds(450, 450, 100, 30);
                     time.setVisible(true);
+                    String timeString = time.getText();
+                    t = Integer.parseInt(timeString);
+                    String finalVelocity = fVelo.getText();
+                    v2 = Integer.parseInt(finalVelocity);
+                    String initialVelocity = iVelo.getText();
+                    v1 = Integer.parseInt(initialVelocity);
 
                     formulaTag1.setText("Final Velocity");
                     formulaTag2.setText("Initial Velocity");
@@ -177,7 +188,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     calculate.setBounds(450, 490, 100, 30);
                     calculate.addActionListener(new ActionListener(){
                         public void actionPerformed(ActionEvent l){
-
+                            answer.setText("Answer: " + acceleration(v1, v2, t));
                         }
                     });
 
@@ -491,7 +502,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         JButton formula, graph; //Creates new button(s)
         title = new JLabel("Physics Application", JLabel.CENTER); //Names the label
         title.setBounds(250, 295, 500, 75); //Sets size and location of the label
-        formula = new JButton("formula"); //Names the button
+        formula = new JButton("Formulas"); //Names the button
         formula.setBounds(375, 375, 250, 75); //Sets size and location of the button
         formula.addActionListener(new ActionListener(){ //Adds an action listener to the button
             public void actionPerformed(ActionEvent e){ //When the button is pressed, perform actions 
@@ -500,7 +511,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
             }
         });
 
-        graph = new JButton("Graph");
+        graph = new JButton("Graphs");
         graph.setBounds(375, 460, 250, 75);
         graph.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent j){
@@ -518,5 +529,119 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         frame.setVisible(true); //Determine if frame is visible and interactable
         
     }
+
+    public static double acceleration(double v1,double v2,double t){ //Acceleration Calculator	
+		try {
+			result = (v2-v1)/t;
+		}
+		catch (ArithmeticException e) {
+				System.out.println(e);
+		}
+		return result;
+	}
+
+	public static double displacement(double v1,double t, double a){ //Displacement Calculator
+		double result = 0;
+		int exponent = (int) Math.pow(t, 2);
+		try {
+			result = (v1*t + 0.5*a*(exponent));
+		}
+		catch (ArithmeticException e) {
+				System.out.println(e);
+		}
+		return result;
+	}
+
+	public static double force(double m, double a){ //Force Calculator
+		double result = 0;	
+		try {
+			result = m*a;
+		}
+		catch (ArithmeticException e) {
+				System.out.println(e);
+		}
+		return result;
+	}
+
+	public static double freefall(double g, double t ){ //Free Fall Calculator
+		double result = 0;
+		int exponent = (int) Math.pow(t, 2);
+		try{
+			result = 0.5*g * (exponent);
+		}
+		catch(ArithmeticException e){
+			System.out.println(e);
+		}
+		return result;
+	}
+
+	public static double velocity(double dis, double t ){ //Velocity Calculator
+		double result = 0;
+		try{
+			result = dis/t;
+		}
+		catch(ArithmeticException e){
+			System.out.println(e);
+		}
+		return result;
+	}
+	
+	public static double work(double f, double dis ){ //Work Calculator
+		double result = 0;
+		try{
+			result = f * dis;
+		}
+		catch(ArithmeticException e){
+			System.out.println(e);
+		}
+		return result;
+	}
+	
+	public static double power(double work, double t ){ //Power Calculator
+		double result = 0;
+		try{
+			result = work/t;
+		}
+		catch(ArithmeticException e){
+			System.out.println(e);
+		}
+		return result;
+	}
+
+	public static double elastic(double k, double dis ){ //Elastic Calculator
+		double result = 0;
+		int exponent = (int) Math.pow(dis2, 2);
+		try{
+			result = 0.5*k * (exponent);
+		}
+		catch(ArithmeticException e){
+			System.out.println(e);
+		}
+		return result;
+	}
+	
+	public static double kinetic(double mass, double tv ){ //Kinetic Calculator
+		double result = 0;
+		int exponent = (int) Math.pow(tv, 2);
+		try{
+			result = 0.5*mass * (exponent);
+		}
+		catch(ArithmeticException e){
+			System.out.println(e);
+		}
+		return result;
+	}
+
+	public static double gravity(double mass, double g, double h ){ //Gravity Calculator
+		double result = 0;
+
+		try{
+			result = mass*g*h;
+		}
+		catch(ArithmeticException e){
+			System.out.println(e);
+		}
+		return result;
+	}
 }
 
