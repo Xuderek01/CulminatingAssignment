@@ -14,51 +14,51 @@ import java.io.*;
 
 class Calculations {
 
-	// Initializes variables for every equation
-		//Acceleration
-		public static double v1 = 0;
-		public static double v2 = 0;
-		public static double t = 0;
-		public static double a;
-		public static double m = 0;
-		public static double g = 0;
-		public static double dis = 0;
-		public static double f = 0;
-		public static double work = 0;
-		public static double k = 0;
-		public static double mass = 0;
-		public static double tv = 0;
-		public static double h = 0;
-		public static double result;
-		public static int exponent;
+	// Initializes global variables for equations to become accessible to other group members
+		//
+		public static double v1 = 0; // initial velocity
+		public static double v2 = 0; // final velocity
+		public static double t = 0; // time
+		public static double a; // acceleration
+		public static double g = 0; // gravity
+		public static double dis = 0; // displacement
+		public static double f = 0; // force
+		public static double work = 0; // work
+		public static double k = 0; // spring constant
+		public static double mass = 0; // mass
+		public static double tv = 0; // total velocity
+		public static double h = 0; // height
+		public static double result; //solution of the equation
+		public static int exponent; // exponent
 
 	public static double acceleration(double v1,double v2,double t){ //Acceleration Calculator
 		double result = 0;	
-		try {
-			result = (v2-v1)/t;
+		try { // attempts to solve equation
+			result = (v2-v1)/t; // result is answer of equation
 		}
-		catch (ArithmeticException e) {
-				System.out.println(e);
+		catch (ArithmeticException e) { // catches exception
+				System.out.println(e); 
 		}
-		return result;
+		return result; // prints the answer
 	}
 
 	public static double displacement(double v1,double t, double a){ //Displacement Calculator
 		double result = 0;
-		int exponent = (int) Math.pow(t, 2);
+		int exponent = (int) Math.pow(t, 2); // initializes exponent 
 		try {
-			result = (v1*t + 0.5*a*(exponent));
+			result = (v1*t + 0.5*a*(exponent)); // includes exponent within equation
 		}
 		catch (ArithmeticException e) {
 				System.out.println(e);
 		}
-		return result;
+		return result; 
 	}
+	// process repeats with other methods
 
-	public static double force(double m, double a){ //Force Calculator
+	public static double force(double mass, double a){ //Force Calculator
 		double result = 0;	
 		try {
-			result = m*a;
+			result = mass*a;
 		}
 		catch (ArithmeticException e) {
 				System.out.println(e);
