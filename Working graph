@@ -1,54 +1,144 @@
-/*
- * 
- * Date:May 22, 2021
- * Name:Gordon Wu
- * Teacher:Mr.Ho
- * Description: Energy bar chart
- * */
+
 import javafx.application.Application;
-import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.XYChart; 
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
-import java.util.Scanner; 
+import javafx.scene.Scene;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.chart.CategoryAxis;
 
 public class App extends Application {
+  public static void main(String[] args) {
+    launch(args);
+  }
+  public static String graphChoice(String graphOption) {
+    return graphOption; 
+  }
+
   
-    public static void main(String[] args) {
-        
-     launch(args); //Launches the JavaFX application 
+  @Override
+  public void start(Stage stage) {
+    
+    String graphOption = ""; 
+    graphOption = graphChoice(graphOption);
+    
+    if(graphOption.equals("energy bar graph")){
+      barGraph(stage);
     }
-   
-    @Override 
-    public void start(Stage stage) throws Exception {
-
-        //Call methods to get values needed
-
-        //Declare axes
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis); //Create bar chart object 
-        
-        //Label axis and titles 
-        stage.setTitle("Energy bar chart"); 
-        bc.setTitle("Energy bar chart");  //Change this title later. Maybe open the option for the user to choose 
-        xAxis.setLabel("Energy");       
-        yAxis.setLabel("Blocks of energy");
-        bc.setLegendVisible(false);  //Makes legend invisible for now  
- 
-        //Define the series of data and assign data to the chart 
-        XYChart.Series series = new XYChart.Series();
-                
-        //series.getData().add(new XYChart.Data("1", energyCalc[1])); //May need to call a function to get the values or get the position of an array
-        series.getData().add(new XYChart.Data("1", 333)); //Tests if this code works
-        bc.getData().addAll(series); //Adds data to the bar chart 
-        
-        Scene scene  = new Scene(bc,800,600); //Creates the scene, sets width and height
-        stage.setScene(scene); //Sets the scene 
-        stage.show(); //Shows the stage  
+    else{
+      lineGraph(stage);
     }
+    
   }
 
 
+  //Put docstrings. This is the energy bar chart
+  private void barGraph(Stage stage) {
+    
+    //Call array method and initialize them and make them = to it. make them return it
+
+    //Declare axes and barcharts
+    CategoryAxis xAxis = new CategoryAxis();
+    NumberAxis yAxis = new NumberAxis();
+    CategoryAxis xAxis2 = new CategoryAxis();
+    NumberAxis yAxis2 = new NumberAxis();
+    BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis); //Create initial bar chart 
+    BarChart<String,Number> bc2 = new BarChart<String,Number>(xAxis2,yAxis2); //Create final bar chart
+
+    
+    //Label axes and titles 
+    stage.setTitle("Bar Graph"); 
+    bc.setTitle("Initial Energy"); 
+    bc2.setTitle("Final Energy"); 
+    xAxis.setLabel("Initial Energies");       
+    yAxis.setLabel("Number of Blocks");
+    xAxis2.setLabel("Final Energies");       
+    yAxis2.setLabel("Number of Blocks");
+
+    //Make legends invisible 
+    bc.setLegendVisible(false); 
+    bc2.setLegendVisible(false);  
+    
+    //Define the series of data and assign data to the chart 
+    var intialData = new XYChart.Series<String, Number>(); 
+    var finalData = new XYChart.Series<String, Number>(); 
+    //Calls method with the data. Then output 2 bargraphs side by side. 
+    
+    //Use loop
+    //for(int i=0;i<data.length;++i) 
+    //seriesData.add(new XYChart.Data(i,data[i]));
+    //for(int i=0;i<data.length;++i) {
+    //The for loop should read the position of the array
+
+    
+    intialData.getData().add(new XYChart.Data<>("something", 1));
+    finalData.getData().add(new XYChart.Data<>("hi", 3));
+    //Something would be an array[i] which has the energy names. 
+     
+    bc.getData().add(intialData); 
+    bc2.getData().add(finalData); 
+    
+    //Add the 2 bar charts to the flow pane so that the 2 bar charts can be shown side by side 
+    FlowPane root = new FlowPane();
+    root.getChildren().addAll(bc, bc2);
+
+    Scene scene  = new Scene(root, 600, 800); //Creates the scene, sets width and height. Also adds flow pane to the scene
+    stage.setScene(scene); //Sets the scene 
+    stage.show(); //Shows the stage
+    
+    
+  }
+
+  //Docstrings
+  public void lineGraph(Stage stage) {
+
+
+    //Declare axes and label them 
+    NumberAxis xAxis = new NumberAxis();
+    NumberAxis yAxis = new NumberAxis();
+    xAxis.setLabel("Voltage"); 
+    yAxis.setLabel("Current"); 
+    //double voltageData[] = {1, 2, 3}; 
+    //double currentData[] = {1, 2, 3}; 
+    //double voltage = voltageStorage(voltageData); 
+    double voltage[] = {1, 2, 3}; 
+    double current[] = {1, 2, 3}; 
+
+    //voltage[] , current[] = lineGraphData(voltageData, currentData); 
+
+    //Create line chart and set the titles
+    LineChart<Number,Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);  
+    stage.setTitle("LineChart");
+    lineChart.setTitle("Voltage Current Graph"); 
+    
+    //Defining and assigning data to the line chart 
+    var data = new XYChart.Series<Number, Number>(); 
+    
+
+    for(int i = 0; i<voltage.length-1;i++){
+       
+      
+      data.getData().add(new XYChart.Data<>(voltage[i], current[i]));
+      
+    }
+
+    lineChart.getData().add(data); //Adds all the data to the line chart
+
+    //Setting the scene and showing the stage(Window) 
+    Scene scene = new Scene(lineChart,800,600); //Sets the width and height 
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  /*
+  public static double[] lineGraphData(double[] voltageData, double[] currentData){
+    String empty[] = {}; 
+    System.out.println(empty);
+    return voltageData, currentData; 
+  }
+  */ 
+  
+    
+}
