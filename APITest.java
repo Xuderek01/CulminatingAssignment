@@ -190,11 +190,11 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String timeString = time.getText();
-                            t = Integer.parseInt(timeString);
+                            t = Double.parseDouble(timeString);
                             String finalVelocity = fVelo.getText();
-                            v2 = Integer.parseInt(finalVelocity);
+                            v2 = Double.parseDouble(finalVelocity);
                             String initialVelocity = iVelo.getText();
-                            v1 = Integer.parseInt(initialVelocity);
+                            v1 = Double.parseDouble(initialVelocity);
                             answer.setText("Answer: " + acceleration(v1, v2, t));
                         }
                     };
@@ -231,11 +231,11 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String timeString = time.getText();
-                            t = Integer.parseInt(timeString);
+                            t = Double.parseDouble(timeString);
                             String accelerationString = acceleration.getText();
-                            a = Integer.parseInt(accelerationString);
+                            a = Double.parseDouble(accelerationString);
                             String initialVelocity = iVelo.getText();
-                            v1 = Integer.parseInt(initialVelocity);
+                            v1 = Double.parseDouble(initialVelocity);
                             answer.setText("Answer: " + displacement(v1, t, a));
                         }
                     };
@@ -270,9 +270,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String massString = massText.getText();
-                            m = Integer.parseInt(massString);
+                            m = Double.parseDouble(massString);
                             String accelerationString = acceleration.getText();
-                            a = Integer.parseInt(accelerationString);
+                            a = Double.parseDouble(accelerationString);
                             answer.setText("Answer: " + force(m, a));
                         }
                     };
@@ -306,7 +306,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String timeString = time.getText();
-                            t = Integer.parseInt(timeString);
+                            t = Double.parseDouble(timeString);
                             answer.setText("Answer: " + freefall(g, t));
                         }
                     };
@@ -341,9 +341,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String displacementString = displace.getText();
-                            dis = Integer.parseInt(displacementString);
+                            dis = Double.parseDouble(displacementString);
                             String timeString = time.getText();
-                            t = Integer.parseInt(timeString);
+                            t = Double.parseDouble(timeString);
                             answer.setText("Answer: " + velocity(dis, t));
                         }
                     };
@@ -378,9 +378,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String displacementString = displace.getText();
-                            dis = Integer.parseInt(displacementString);
+                            dis = Double.parseDouble(displacementString);
                             String forceString = force.getText();
-                            f = Integer.parseInt(forceString);
+                            f = Double.parseDouble(forceString);
                             answer.setText("Answer: " + work(dis, f));
                         }
                     };
@@ -417,9 +417,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String workString = workText.getText();
-                            work = Integer.parseInt(workString);
+                            work = Double.parseDouble(workString);
                             String timeString = time.getText();
-                            t = Integer.parseInt(timeString);
+                            t = Double.parseDouble(timeString);
                             answer.setText("Answer: " + power(work, t));
                         }
                     };
@@ -455,9 +455,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String massString = massText.getText();
-                            mass = Integer.parseInt(massString);
+                            mass = Double.parseDouble(massString);
                             String heightString = height.getText();
-                            h = Integer.parseInt(heightString);
+                            h = Double.parseDouble(heightString);
                             answer.setText("Answer: " + gravity(mass, g, h));
                         }
                     };
@@ -492,9 +492,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String massString = massText.getText();
-                            mass = Integer.parseInt(massString);
+                            mass = Double.parseDouble(massString);
                             String velocityString = velocity.getText();
-                            tv = Integer.parseInt(velocityString);
+                            tv = Double.parseDouble(velocityString);
                             answer.setText("Answer: " + kinetic(mass, tv));
                         }
                     };
@@ -529,9 +529,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     currentActionListener = new ActionListener(){
                         public void actionPerformed(ActionEvent l){
                             String kString = sConstant.getText();
-                            k = Integer.parseInt(kString);
+                            k = Double.parseDouble(kString);
                             String displacementString = displace.getText();
-                            dis = Integer.parseInt(displacementString);
+                            dis = Double.parseDouble(displacementString);
                             answer.setText("Answer: " + elastic(k, dis));
                         }
                     };
