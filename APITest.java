@@ -12,20 +12,13 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
     }
 
     public static void graphs(){
-        String eGraph = "";
-        String vTGraph = "";
-        String vCGraph = "";
 
         JFrame frame2 = new JFrame("Physics Application - Options");
 
-        JButton back;
+        JButton back, bGraph, vCGraph;
 
-        Choice g;
-
-        g = new Choice();
-        g.add(eGraph);
-        g.add(vTGraph);
-        g.add(vCGraph);
+        JLabel graphTitle = new JLabel("Graphs", JLabel.CENTER);
+        graphTitle.setBounds(250, 265, 500, 100);
 
         back = new JButton("Back");
         back.setBounds(450, 800, 100, 30);
@@ -35,8 +28,18 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                 frame2.setVisible(false);
             } 
         });
+
+        bGraph = new JButton("Bar Graoh");
+        bGraph.setBounds(300, 375, 400, 120);
+
+        vCGraph = new JButton("Voltage-Current Graph");
+        vCGraph.setBounds(300, 505, 400, 120);
         
         frame2.add(back);
+        frame2.add(bGraph);
+        frame2.add(vCGraph);
+        frame2.add(graphTitle);
+        graphTitle.setFont(new Font("Courier", Font.BOLD, 75));
         frame2.setSize(1000, 1000);
         frame2.setLayout(null);
         frame2.setVisible(true);
@@ -46,10 +49,10 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
     public static void formulas(){ //Formula screen method
         JFrame frame1 = new JFrame("Physics Application - Options"); //Initialize all variables and objects
         JLabel formulaTitle, inputValue, equation, chosenEq, answer;
-        JLabel formulaTag1, formulaTag2, formulaTag3, formulaTag4;
+        JLabel formulaTag1, formulaTag2, formulaTag3;
         Choice c;
-        JButton confirm, back;
-        JTextField acceleration, iVelo, fVelo, displace, force, mass, time, velocity, height, sConstant;
+        JButton confirm, back, calculate;
+        JTextField acceleration, iVelo, fVelo, displace, force, mass, time, velocity, height, sConstant, work;
         String option1 = "Acceleration Formula";
         String option2 = "Displacement Formula";
         String option3 = "Force Formula";
@@ -91,6 +94,8 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         sConstant = new JTextField();
         sConstant.setBounds(0, 0, 0, 0);
         sConstant.setVisible(false);
+        work = new JTextField();
+        work.setBounds(0, 0, 0, 0);
 
 
         answer = new JLabel("ANSWER: ", JLabel.CENTER);
@@ -103,6 +108,12 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         equation.setBounds(250, 240, 500, 100);
         formulaTitle = new JLabel("Formulas", JLabel.CENTER);
         formulaTitle.setBounds(250, 50, 500, 75);
+        formulaTag1 = new JLabel("");
+        formulaTag1.setBounds(320, 370, 150, 30);
+        formulaTag2 = new JLabel("");
+        formulaTag2.setBounds(320, 410, 150, 30);
+        formulaTag3 = new JLabel("");
+        formulaTag3.setBounds(320, 450, 150, 30);
         
         c = new Choice(); //Set dropbox, set boundaries, and add options
         c.setBounds(400, 170, 200, 30);
@@ -117,6 +128,8 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         c.add(option9);
         c.add(option10);
 
+
+        calculate = new JButton("Calculate");
         confirm = new JButton("confirm"); //Set button and determine what happens when clicked
         confirm.setBounds(450, 205, 100, 30);
         confirm.addActionListener(new ActionListener(){
@@ -133,6 +146,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     velocity.setVisible(false);
                     height.setVisible(false);
                     sConstant.setVisible(false);
+                    work.setVisible(false);
                     
                     fVelo.setBounds(450, 370, 100, 30);
                     fVelo.setVisible(true);
@@ -140,33 +154,274 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     iVelo.setVisible(true);
                     time.setBounds(450, 450, 100, 30);
                     time.setVisible(true);
+
+                    formulaTag1.setText("Final Velocity");
+                    formulaTag2.setText("Initial Velocity");
+                    formulaTag3.setText("Time");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+
+                        }
+                    });
+
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option2)){
                     chosenEq.setText("d = Vi x t + 1/2a x t^2");
+                    displace.setVisible(false);
+                    force.setVisible(false);
+                    mass.setVisible(false);
+                    velocity.setVisible(false);
+                    height.setVisible(false);
+                    sConstant.setVisible(false);
+                    fVelo.setVisible(false);
+                    work.setVisible(false);
+
+                    iVelo.setBounds(450, 370, 100, 30);
+                    iVelo.setVisible(true);
+                    time.setBounds(450, 410, 100, 30);
+                    time.setVisible(true);
+                    acceleration.setBounds(450, 450, 100, 30);
+                    acceleration.setVisible(true);
+
+                    formulaTag1.setText("Initial Velocity");
+                    formulaTag2.setText("Time");
+                    formulaTag3.setText("Acceleration");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
+
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option3)){
                     chosenEq.setText("f = m x a");
+                    displace.setVisible(false);
+                    force.setVisible(false);
+                    velocity.setVisible(false);
+                    height.setVisible(false);
+                    sConstant.setVisible(false);
+                    fVelo.setVisible(false);
+                    iVelo.setVisible(false);
+                    time.setVisible(false);
+                    work.setVisible(false);
+
+                    mass.setBounds(450, 370, 100, 30);
+                    mass.setVisible(true);
+                    acceleration.setBounds(450, 410, 100, 30);
+                    acceleration.setVisible(true);
+
+                    formulaTag1.setText("Mass");
+                    formulaTag2.setText("Acceleration");
+                    formulaTag3.setText("");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option4)){
                     chosenEq.setText("free fall = (1/2 x 9.8) x t^2");
+                    displace.setVisible(false);
+                    force.setVisible(false);
+                    velocity.setVisible(false);
+                    height.setVisible(false);
+                    sConstant.setVisible(false);
+                    fVelo.setVisible(false);
+                    iVelo.setVisible(false);
+                    mass.setVisible(false);
+                    acceleration.setVisible(false);
+                    work.setVisible(false);
+
+                    time.setBounds(450, 370, 100, 30);
+                    time.setVisible(true);
+
+                    formulaTag1.setText("Time");
+                    formulaTag2.setText("");
+                    formulaTag3.setText("");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option5)){
                     chosenEq.setText("v = d/t");
+                    force.setVisible(false);
+                    velocity.setVisible(false);
+                    height.setVisible(false);
+                    sConstant.setVisible(false);
+                    fVelo.setVisible(false);
+                    iVelo.setVisible(false);
+                    mass.setVisible(false);
+                    acceleration.setVisible(false);
+                    work.setVisible(false);
+
+                    displace.setBounds(450, 370, 100, 30);
+                    displace.setVisible(true);
+                    time.setBounds(450, 410, 100, 30);
+                    time.setVisible(true);
+
+                    formulaTag1.setText("Displacement");
+                    formulaTag2.setText("Time");
+                    formulaTag3.setText("");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option6)){
                     chosenEq.setText("w = f x d");
+                    velocity.setVisible(false);
+                    height.setVisible(false);
+                    sConstant.setVisible(false);
+                    fVelo.setVisible(false);
+                    iVelo.setVisible(false);
+                    mass.setVisible(false);
+                    acceleration.setVisible(false);
+                    time.setVisible(false);
+                    work.setVisible(false);
+
+                    force.setBounds(450, 370, 100, 30);
+                    force.setVisible(true);
+                    displace.setBounds(450, 410, 100, 30);
+                    displace.setVisible(true);
+
+                    formulaTag1.setText("Force");
+                    formulaTag2.setText("Displacement");
+                    formulaTag3.setText("");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
+                    
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option7)){
                     chosenEq.setText("p = w/t");
+                    force.setVisible(false);
+                    velocity.setVisible(false);
+                    height.setVisible(false);
+                    sConstant.setVisible(false);
+                    fVelo.setVisible(false);
+                    iVelo.setVisible(false);
+                    mass.setVisible(false);
+                    acceleration.setVisible(false);
+                    work.setVisible(false);
+                    displace.setVisible(false);
+
+                    work.setBounds(450, 370, 100, 30);
+                    work.setVisible(true);
+                    time.setBounds(450, 410, 100, 30);
+                    time.setVisible(true);
+
+                    formulaTag1.setText("Work");
+                    formulaTag2.setText("Time");
+                    formulaTag3.setText("");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
+
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option8)){
-                    chosenEq.setText("m x g x h");
+                    chosenEq.setText("m x 9.8 x h");
+                    displace.setVisible(false);
+                    force.setVisible(false);
+                    velocity.setVisible(false);
+                    acceleration.setVisible(false);
+                    sConstant.setVisible(false);
+                    fVelo.setVisible(false);
+                    iVelo.setVisible(false);
+                    time.setVisible(false);
+                    work.setVisible(false);
+
+                    mass.setBounds(450, 370, 100, 30);
+                    mass.setVisible(true);
+                    height.setBounds(450, 410, 100, 30);
+                    height.setVisible(true);
+
+                    formulaTag1.setText("Mass");
+                    formulaTag2.setText("Height");
+                    formulaTag3.setText("");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option9)){
                     chosenEq.setText("1/2m x v^2");
+                    displace.setVisible(false);
+                    force.setVisible(false);
+                    height.setVisible(false);
+                    acceleration.setVisible(false);
+                    sConstant.setVisible(false);
+                    fVelo.setVisible(false);
+                    iVelo.setVisible(false);
+                    time.setVisible(false);
+                    work.setVisible(false);
+
+                    mass.setBounds(450, 370, 100, 30);
+                    mass.setVisible(true);
+                    velocity.setBounds(450, 410, 100, 30);
+                    velocity.setVisible(true);
+
+                    formulaTag1.setText("Mass");
+                    formulaTag2.setText("Velocity");
+                    formulaTag3.setText("");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option10)){
                     chosenEq.setText("1/2k x d^2");
+                    force.setVisible(false);
+                    height.setVisible(false);
+                    acceleration.setVisible(false);
+                    mass.setVisible(false);
+                    velocity.setVisible(false);
+                    fVelo.setVisible(false);
+                    iVelo.setVisible(false);
+                    time.setVisible(false);
+                    work.setVisible(false);
+
+                    displace.setBounds(450, 410, 100, 30);
+                    displace.setVisible(true);
+                    sConstant.setBounds(450, 370, 100, 30);
+                    sConstant.setVisible(true);
+
+                    formulaTag1.setText("Displacement");
+                    formulaTag2.setText("Spring Constant");
+                    formulaTag3.setText("");
+
+                    calculate.setBounds(450, 490, 100, 30);
+                    calculate.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent l){
+                            
+                        }
+                    });
                 }
 
             }
@@ -194,6 +449,17 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         frame1.add(fVelo);
         frame1.add(iVelo);
         frame1.add(time);
+        frame1.add(displace);
+        frame1.add(force);
+        frame1.add(mass);
+        frame1.add(velocity);
+        frame1.add(height);
+        frame1.add(sConstant);
+        frame1.add(work);
+        frame1.add(calculate);
+        frame1.add(formulaTag1);
+        frame1.add(formulaTag2);
+        frame1.add(formulaTag3);
         formulaTitle.setFont(new Font("Courier", Font.BOLD, 75));
         equation.setFont(new Font("Courier", Font.PLAIN, 35));
         inputValue.setFont(new Font("Courier", Font.PLAIN, 30));
