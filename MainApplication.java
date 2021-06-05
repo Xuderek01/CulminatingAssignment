@@ -1,4 +1,3 @@
-
 import javax.security.auth.login.AppConfigurationEntry; //Import necessary packages
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +5,7 @@ import java.awt.event.*;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-class APITest extends Frame implements ActionListener, WindowListener{ //Class that extends frame and inplements actionListener and WindowListener
+class MainClass extends Frame implements ActionListener, WindowListener{ //Class that extends frame and inplements actionListener and WindowListener
 
     public static double v1 = 0; // initial velocity
 	public static double v2 = 0; // final velocity
@@ -22,6 +21,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
 	public static double h = 0; // height
 	public static double result; //solution of the equation
 	public static int exponent; // exponent
+
     public static void main(String[] args){ //Main method
         menu(); //Calls on menu method
     }
@@ -518,5 +518,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         frame.setVisible(true); //Determine if frame is visible and interactable
         
     }
+
+    
 }
 
