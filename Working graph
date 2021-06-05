@@ -1,3 +1,11 @@
+/*
+ * 
+ * Date:May 30, 2021
+ * Name:Gordon Wu
+ * Teacher:Mr.Ho
+ * Description: Generates graphs depending on the selected options from user. 
+ * */
+
 
 import javafx.application.Application;
 import javafx.scene.chart.LineChart;
@@ -13,18 +21,18 @@ public class App extends Application {
   public static void main(String[] args) {
     launch(args);
   }
-  public static String graphChoice(String graphOption) {
-    return graphOption; 
-  }
 
-  
+
+  /*
+  * Description: Decides which graph to use and launches the application. 
+  * @author: Gordon Wu
+  */
   @Override
   public void start(Stage stage) {
     
-    String graphOption = ""; 
-    graphOption = graphChoice(graphOption);
+    String graphOption = ""; //Assume this option was passed from GUI
     
-    if(graphOption.equals("energy bar graph")){
+    if(graphOption.equals("Energy Bar Graph")){
       barGraph(stage);
     }
     else{
@@ -34,11 +42,18 @@ public class App extends Application {
   }
 
 
-  //Put docstrings. This is the energy bar chart
+  /*
+  * Description: Generates energy bar graph so that user does not need to draw them. 
+  * @author: Gordon Wu
+  */
   private void barGraph(Stage stage) {
     
-    //Call array method and initialize them and make them = to it. make them return it
-
+    //Initializes variables 
+    //Assume these arrays were passed or returned
+    double initialInfo[] = {1, 2, 3}; 
+    double finalInfo[] = {1, 2, 3}; 
+    String initialNames[] = {"1", "2", "3"};
+    String finalNames[] = {"1", "2", "3"};
     //Declare axes and barcharts
     CategoryAxis xAxis = new CategoryAxis();
     NumberAxis yAxis = new NumberAxis();
@@ -47,7 +62,6 @@ public class App extends Application {
     BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis); //Create initial bar chart 
     BarChart<String,Number> bc2 = new BarChart<String,Number>(xAxis2,yAxis2); //Create final bar chart
 
-    
     //Label axes and titles 
     stage.setTitle("Bar Graph"); 
     bc.setTitle("Initial Energy"); 
@@ -64,49 +78,42 @@ public class App extends Application {
     //Define the series of data and assign data to the chart 
     var intialData = new XYChart.Series<String, Number>(); 
     var finalData = new XYChart.Series<String, Number>(); 
-    //Calls method with the data. Then output 2 bargraphs side by side. 
-    
-    //Use loop
-    //for(int i=0;i<data.length;++i) 
-    //seriesData.add(new XYChart.Data(i,data[i]));
-    //for(int i=0;i<data.length;++i) {
-    //The for loop should read the position of the array
 
-    
-    intialData.getData().add(new XYChart.Data<>("something", 1));
-    finalData.getData().add(new XYChart.Data<>("hi", 3));
-    //Something would be an array[i] which has the energy names. 
-     
+    for(int i = 0; i<initialInfo.length; i++){
+      intialData.getData().add(new XYChart.Data<>(initialNames[i], initialInfo[i]));
+    }
+
+    for(int j = 0; j<initialInfo.length; j++){
+      finalData.getData().add(new XYChart.Data<>(finalNames[j], finalInfo[j]));
+    }
+
     bc.getData().add(intialData); 
     bc2.getData().add(finalData); 
     
-    //Add the 2 bar charts to the flow pane so that the 2 bar charts can be shown side by side 
+    //Setting up the bar chart
     FlowPane root = new FlowPane();
-    root.getChildren().addAll(bc, bc2);
-
+    root.getChildren().addAll(bc, bc2);//Add the 2 bar charts to the flow pane so that the 2 bar charts can be shown side by side 
     Scene scene  = new Scene(root, 600, 800); //Creates the scene, sets width and height. Also adds flow pane to the scene
     stage.setScene(scene); //Sets the scene 
     stage.show(); //Shows the stage
-    
-    
   }
 
-  //Docstrings
+  /*
+  * Description: Generates voltage current graph so that user does not need to draw them. Assume constant temperature. 
+  * @author: Gordon Wu
+  */
   public void lineGraph(Stage stage) {
 
+    //Initialize variables
+    //Assume variables were passed or returned 
+    double voltage[] = {1, 2, 3}; 
+    double current[] = {1, 2, 3}; 
 
     //Declare axes and label them 
     NumberAxis xAxis = new NumberAxis();
     NumberAxis yAxis = new NumberAxis();
     xAxis.setLabel("Voltage"); 
     yAxis.setLabel("Current"); 
-    //double voltageData[] = {1, 2, 3}; 
-    //double currentData[] = {1, 2, 3}; 
-    //double voltage = voltageStorage(voltageData); 
-    double voltage[] = {1, 2, 3}; 
-    double current[] = {1, 2, 3}; 
-
-    //voltage[] , current[] = lineGraphData(voltageData, currentData); 
 
     //Create line chart and set the titles
     LineChart<Number,Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);  
@@ -115,13 +122,9 @@ public class App extends Application {
     
     //Defining and assigning data to the line chart 
     var data = new XYChart.Series<Number, Number>(); 
-    
 
-    for(int i = 0; i<voltage.length-1;i++){
-       
-      
+    for(int i = 0; i<voltage.length;i++){
       data.getData().add(new XYChart.Data<>(voltage[i], current[i]));
-      
     }
 
     lineChart.getData().add(data); //Adds all the data to the line chart
@@ -132,13 +135,6 @@ public class App extends Application {
     stage.show();
   }
 
-  /*
-  public static double[] lineGraphData(double[] voltageData, double[] currentData){
-    String empty[] = {}; 
-    System.out.println(empty);
-    return voltageData, currentData; 
-  }
-  */ 
   
     
 }
