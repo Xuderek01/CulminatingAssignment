@@ -7,6 +7,21 @@ import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 class APITest extends Frame implements ActionListener, WindowListener{ //Class that extends frame and inplements actionListener and WindowListener
+
+    public static double v1 = 0; // initial velocity
+	public static double v2 = 0; // final velocity
+	public static double t = 0; // time
+	public static double a; // acceleration
+	public static double g = 0; // gravity
+	public static double dis = 0; // displacement
+	public static double f = 0; // force
+	public static double work = 0; // work
+	public static double k = 0; // spring constant
+	public static double mass = 0; // mass
+	public static double tv = 0; // total velocity
+	public static double h = 0; // height
+	public static double result; //solution of the equation
+	public static int exponent; // exponent
     public static void main(String[] args){ //Main method
         menu(); //Calls on menu method
     }
@@ -52,7 +67,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         JLabel formulaTag1, formulaTag2, formulaTag3;
         Choice c;
         JButton confirm, back, calculate;
-        JTextField acceleration, iVelo, fVelo, displace, force, mass, time, velocity, height, sConstant, work;
+        JTextField acceleration, iVelo, fVelo, displace, force, massText, time, velocity, height, sConstant, workText;
         String option1 = "Acceleration Formula";
         String option2 = "Displacement Formula";
         String option3 = "Force Formula";
@@ -79,9 +94,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         force = new JTextField();
         force.setBounds(0, 0, 0, 0);
         force.setVisible(false);
-        mass = new JTextField();
-        mass.setBounds(0, 0, 0, 0);
-        mass.setVisible(false);
+        massText = new JTextField();
+        massText.setBounds(0, 0, 0, 0);
+        massText.setVisible(false);
         time = new JTextField();
         time.setBounds(0, 0, 0, 0);
         time.setVisible(false);
@@ -94,8 +109,8 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         sConstant = new JTextField();
         sConstant.setBounds(0, 0, 0, 0);
         sConstant.setVisible(false);
-        work = new JTextField();
-        work.setBounds(0, 0, 0, 0);
+        workText = new JTextField();
+        workText.setBounds(0, 0, 0, 0);
 
 
         answer = new JLabel("ANSWER: ", JLabel.CENTER);
@@ -142,11 +157,11 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     acceleration.setVisible(false);
                     displace.setVisible(false);
                     force.setVisible(false);
-                    mass.setVisible(false);
+                    massText.setVisible(false);
                     velocity.setVisible(false);
                     height.setVisible(false);
                     sConstant.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
                     
                     fVelo.setBounds(450, 370, 100, 30);
                     fVelo.setVisible(true);
@@ -171,12 +186,12 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     chosenEq.setText("d = Vi x t + 1/2a x t^2");
                     displace.setVisible(false);
                     force.setVisible(false);
-                    mass.setVisible(false);
+                    massText.setVisible(false);
                     velocity.setVisible(false);
                     height.setVisible(false);
                     sConstant.setVisible(false);
                     fVelo.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
 
                     iVelo.setBounds(450, 370, 100, 30);
                     iVelo.setVisible(true);
@@ -207,10 +222,10 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     fVelo.setVisible(false);
                     iVelo.setVisible(false);
                     time.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
 
-                    mass.setBounds(450, 370, 100, 30);
-                    mass.setVisible(true);
+                    massText.setBounds(450, 370, 100, 30);
+                    massText.setVisible(true);
                     acceleration.setBounds(450, 410, 100, 30);
                     acceleration.setVisible(true);
 
@@ -234,9 +249,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     sConstant.setVisible(false);
                     fVelo.setVisible(false);
                     iVelo.setVisible(false);
-                    mass.setVisible(false);
+                    massText.setVisible(false);
                     acceleration.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
 
                     time.setBounds(450, 370, 100, 30);
                     time.setVisible(true);
@@ -260,9 +275,9 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     sConstant.setVisible(false);
                     fVelo.setVisible(false);
                     iVelo.setVisible(false);
-                    mass.setVisible(false);
+                    massText.setVisible(false);
                     acceleration.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
 
                     displace.setBounds(450, 370, 100, 30);
                     displace.setVisible(true);
@@ -287,10 +302,10 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     sConstant.setVisible(false);
                     fVelo.setVisible(false);
                     iVelo.setVisible(false);
-                    mass.setVisible(false);
+                    massText.setVisible(false);
                     acceleration.setVisible(false);
                     time.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
 
                     force.setBounds(450, 370, 100, 30);
                     force.setVisible(true);
@@ -317,13 +332,13 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     sConstant.setVisible(false);
                     fVelo.setVisible(false);
                     iVelo.setVisible(false);
-                    mass.setVisible(false);
+                    massText.setVisible(false);
                     acceleration.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
                     displace.setVisible(false);
 
-                    work.setBounds(450, 370, 100, 30);
-                    work.setVisible(true);
+                    workText.setBounds(450, 370, 100, 30);
+                    workText.setVisible(true);
                     time.setBounds(450, 410, 100, 30);
                     time.setVisible(true);
 
@@ -349,10 +364,10 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     fVelo.setVisible(false);
                     iVelo.setVisible(false);
                     time.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
 
-                    mass.setBounds(450, 370, 100, 30);
-                    mass.setVisible(true);
+                    massText.setBounds(450, 370, 100, 30);
+                    massText.setVisible(true);
                     height.setBounds(450, 410, 100, 30);
                     height.setVisible(true);
 
@@ -377,10 +392,10 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     fVelo.setVisible(false);
                     iVelo.setVisible(false);
                     time.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
 
-                    mass.setBounds(450, 370, 100, 30);
-                    mass.setVisible(true);
+                    massText.setBounds(450, 370, 100, 30);
+                    massText.setVisible(true);
                     velocity.setBounds(450, 410, 100, 30);
                     velocity.setVisible(true);
 
@@ -400,12 +415,12 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     force.setVisible(false);
                     height.setVisible(false);
                     acceleration.setVisible(false);
-                    mass.setVisible(false);
+                    massText.setVisible(false);
                     velocity.setVisible(false);
                     fVelo.setVisible(false);
                     iVelo.setVisible(false);
                     time.setVisible(false);
-                    work.setVisible(false);
+                    workText.setVisible(false);
 
                     displace.setBounds(450, 410, 100, 30);
                     displace.setVisible(true);
@@ -451,11 +466,11 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         frame1.add(time);
         frame1.add(displace);
         frame1.add(force);
-        frame1.add(mass);
+        frame1.add(massText);
         frame1.add(velocity);
         frame1.add(height);
         frame1.add(sConstant);
-        frame1.add(work);
+        frame1.add(workText);
         frame1.add(calculate);
         frame1.add(formulaTag1);
         frame1.add(formulaTag2);
