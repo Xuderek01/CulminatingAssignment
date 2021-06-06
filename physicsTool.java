@@ -35,7 +35,9 @@ class physicsTool extends Frame implements ActionListener, WindowListener{ //Cla
     public static void barGraph(){
         JFrame frame3 = new JFrame("Physics Application - Graphs(bar Graph)");
         JButton back;
+        JTextField En1,En2, En3;
         JLabel barGraphTitle;
+        
 
         back = new JButton("Back");
         back.setBounds(450, 800, 100, 30);
