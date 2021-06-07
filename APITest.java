@@ -11,7 +11,7 @@ import java.util.*;
 import java.io.*;
 class APITest extends Frame implements ActionListener, WindowListener{ //Class that extends frame and inplements actionListener and WindowListener
 
-    public static double v1 = 0;
+    public static double v1 = 0; //Creaes global variables
 	public static double v2 = 0;
 	public static double t = 0;
 	public static double a;
@@ -27,54 +27,54 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
 	public static double result;
 	public static int exponent;
 
-    public static ActionListener currentActionListener;
-    public static void main(String[] args){ //Main method
+    public static ActionListener currentActionListener; //Global actionListener
+    public static void main(String[] args){ //Main method //Main method calls menu and starts program
         menu(); //Calls on menu method
     }
 
     public static void graphs(){
 
-        JFrame frame2 = new JFrame("Physics Application - Options");
+        JFrame frame2 = new JFrame("Physics Application - Options"); //Creates graph frame and names window
 
-        JButton back, bGraph, vCGraph;
+        JButton back, bGraph, vCGraph; //Creates Buttons
 
-        JLabel graphTitle = new JLabel("Graphs", JLabel.CENTER);
+        JLabel graphTitle = new JLabel("Graphs", JLabel.CENTER); //Creates label, centers the text, and sets location and size
         graphTitle.setBounds(250, 265, 500, 100);
 
-        back = new JButton("Back");
+        back = new JButton("Back"); //New button, sets location and size, sets text, and creates actionEvent
         back.setBounds(450, 800, 100, 30);
-        back.addActionListener(new ActionListener(){
+        back.addActionListener(new ActionListener(){ //When button is pressed, make frame invisible, and return to menu frame
             public void actionPerformed(ActionEvent k){
                 menu();
                 frame2.setVisible(false);
             } 
         });
 
-        bGraph = new JButton("Energy Bar Graph");
+        bGraph = new JButton("Energy Bar Graph"); //Creates energy bar button
         bGraph.setBounds(300, 375, 400, 120);
 
-        vCGraph = new JButton("Voltage-Current Graph");
+        vCGraph = new JButton("Voltage-Current Graph"); //Creates vC graph button
         vCGraph.setBounds(300, 505, 400, 120);
         
-        frame2.add(back);
+        frame2.add(back); //Adds the components to the frame
         frame2.add(bGraph);
         frame2.add(vCGraph);
         frame2.add(graphTitle);
-        graphTitle.setFont(new Font("Courier", Font.BOLD, 75));
-        frame2.setSize(1000, 1000);
-        frame2.setLayout(null);
-        frame2.setVisible(true);
+        graphTitle.setFont(new Font("Courier", Font.BOLD, 75)); //Changes the font and font size of the graph title
+        frame2.setSize(1000, 1000); //Sets size of frame
+        frame2.setLayout(null); //Allows for user to set precise bounds
+        frame2.setVisible(true); //Sets the visibility of the frame
     }
     
 
     public static void formulas(){ //Formula screen method
         JFrame frame1 = new JFrame("Physics Application - Options"); //Initialize all variables and objects
-        JLabel formulaTitle, inputValue, equation, chosenEq, answer;
+        JLabel formulaTitle, inputValue, equation, chosenEq, answer; //Creats labels
         JLabel formulaTag1, formulaTag2, formulaTag3;
-        Choice c;
-        JButton confirm, back, calculate;
-        JTextField acceleration, iVelo, fVelo, displace, force, massText, time, velocity, height, sConstant, workText;
-        String option1 = "Acceleration Formula";
+        Choice c; //Creates dropbox
+        JButton confirm, back, calculate; //Creates buttons
+        JTextField acceleration, iVelo, fVelo, displace, force, massText, time, velocity, height, sConstant, workText; //Creates TextFields
+        String option1 = "Acceleration Formula"; //Creates necessary strings
         String option2 = "Displacement Formula";
         String option3 = "Force Formula";
         String option4 = "Free Fall Formula";
@@ -86,7 +86,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         String option10 = "Potential Elastic Energy Formula";
 
 
-        acceleration = new JTextField("0");
+        acceleration = new JTextField("0"); //Initializes textfields, and make them inaccessible
         acceleration.setBounds(0, 0, 0, 0);
         acceleration.setVisible(false);
         iVelo = new JTextField("0");
@@ -120,7 +120,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         workText.setBounds(0, 0, 0, 0);
 
 
-        answer = new JLabel("ANSWER: ", JLabel.CENTER);
+        answer = new JLabel("ANSWER: ", JLabel.CENTER); //Create labels and set bounds, as well as centers the text
         answer.setBounds(100, 600, 800, 100);
         chosenEq = new JLabel("", JLabel.CENTER);
         chosenEq.setBounds(250, 290, 500, 75);
@@ -130,7 +130,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         equation.setBounds(250, 240, 500, 100);
         formulaTitle = new JLabel("Formulas", JLabel.CENTER);
         formulaTitle.setBounds(250, 50, 500, 75);
-        formulaTag1 = new JLabel("");
+        formulaTag1 = new JLabel(""); //Initialize labels
         formulaTag1.setBounds(320, 370, 150, 30);
         formulaTag2 = new JLabel("");
         formulaTag2.setBounds(320, 410, 150, 30);
@@ -139,7 +139,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         
         c = new Choice(); //Set dropbox, set boundaries, and add options
         c.setBounds(400, 170, 200, 30);
-        c.add(option1);
+        c.add(option1); //Adds 10 options to choose from
         c.add(option2);
         c.add(option3);
         c.add(option4);
@@ -159,10 +159,10 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                 String data = c.getItem(c.getSelectedIndex()); //pulls data from option selected
                 equation.setText(data);//Sets label to data variable
 
-                if (c.getItem(c.getSelectedIndex()).equals(option1)){
-                    answer.setText("Answer: ");
-                    chosenEq.setText("a = (Vf - Vi)/t");
-                    acceleration.setVisible(false);
+                if (c.getItem(c.getSelectedIndex()).equals(option1)){ //If the selected item is option 1
+                    answer.setText("Answer: "); //Sets the answer label to "Answer: "
+                    chosenEq.setText("a = (Vf - Vi)/t"); //Changes the chosenEq label to the corresponding formula
+                    acceleration.setVisible(false); //Sets unused text fields to false visibility
                     displace.setVisible(false);
                     force.setVisible(false);
                     massText.setVisible(false);
@@ -171,34 +171,34 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                     sConstant.setVisible(false);
                     workText.setVisible(false);
                     
-                    fVelo.setBounds(450, 370, 100, 30);
-                    fVelo.setVisible(true);
+                    fVelo.setBounds(450, 370, 100, 30); //Sets bounds for used textFields
+                    fVelo.setVisible(true); //Makes the textFields visible
                     iVelo.setBounds(450, 410, 100, 30);
                     iVelo.setVisible(true);
                     time.setBounds(450, 450, 100, 30);
                     time.setVisible(true);
                     
 
-                    formulaTag1.setText("Final Velocity");
+                    formulaTag1.setText("Final Velocity"); //Labels each textField
                     formulaTag2.setText("Initial Velocity");
                     formulaTag3.setText("Time");
 
-                    calculate.setBounds(450, 490, 100, 30);
-                    if (currentActionListener != null){
-                        calculate.removeActionListener(currentActionListener);
+                    calculate.setBounds(450, 490, 100, 30); //Sets bounds of button
+                    if (currentActionListener != null){ //If there is data in the currentActionListener
+                        calculate.removeActionListener(currentActionListener); //Wipe the actionListener
                     }
-                    currentActionListener = new ActionListener(){
+                    currentActionListener = new ActionListener(){ //New actionListener
                         public void actionPerformed(ActionEvent l){
-                            String timeString = time.getText();
-                            t = Double.parseDouble(timeString);
+                            String timeString = time.getText(); //Sets text inside the textField as a string variable
+                            t = Double.parseDouble(timeString); //turns global variable to a double version of the text
                             String finalVelocity = fVelo.getText();
                             v2 = Double.parseDouble(finalVelocity);
                             String initialVelocity = iVelo.getText();
                             v1 = Double.parseDouble(initialVelocity);
-                            answer.setText("Answer: " + acceleration(v1, v2, t));
+                            answer.setText("Answer: " + acceleration(v1, v2, t)); //Calls on formula method, and uses necessary global variables
                         }
                     };
-                    calculate.addActionListener(currentActionListener);
+                    calculate.addActionListener(currentActionListener); //Adds the actionListener to the button
 
                 }
                 else if (c.getItem(c.getSelectedIndex()).equals(option2)){
@@ -531,7 +531,7 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
                             String kString = sConstant.getText();
                             k = Double.parseDouble(kString);
                             String displacementString = displace.getText();
-                            dis = Double.parseDouble(displacementString);
+                            dis = Integer.parseInt(displacementString);
                             answer.setText("Answer: " + elastic(k, dis));
                         }
                     };
@@ -541,17 +541,17 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
             }
         });
 
-        back = new JButton("Back");
-        back.setBounds(450, 800, 100, 30);
-        back.addActionListener(new ActionListener(){
+        back = new JButton("Back"); //Creates new button
+        back.setBounds(450, 800, 100, 30); //Sets boundaries and size
+        back.addActionListener(new ActionListener(){ //Adds new actionListener
             public void actionPerformed(ActionEvent h){
-                menu();
+                menu(); //If button is pressed, return to menu and set frame to invisible
                 frame1.setVisible(false);
             }
 
         });
 
-        frame1.add(formulaTitle);
+        frame1.add(formulaTitle); //Adds frame components
         frame1.add(c);
         frame1.add(confirm);
         frame1.add(equation);
@@ -574,14 +574,14 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
         frame1.add(formulaTag1);
         frame1.add(formulaTag2);
         frame1.add(formulaTag3);
-        formulaTitle.setFont(new Font("Courier", Font.BOLD, 75));
+        formulaTitle.setFont(new Font("Courier", Font.BOLD, 75)); //sets font sizes and fonts for labels
         equation.setFont(new Font("Courier", Font.PLAIN, 35));
         inputValue.setFont(new Font("Courier", Font.PLAIN, 30));
         chosenEq.setFont(new Font("Courier", Font.PLAIN, 30));
         answer.setFont(new Font("Courier", Font.BOLD, 30));
-        frame1.setSize(1000, 1000);
-        frame1.setLayout(null);
-        frame1.setVisible(true);
+        frame1.setSize(1000, 1000); //Sets size of frame
+        frame1.setLayout(null); //Allows for specific bounds to be set
+        frame1.setVisible(true); //Frame visibility is true
     }
 
     public static void menu(){
@@ -599,19 +599,19 @@ class APITest extends Frame implements ActionListener, WindowListener{ //Class t
             }
         });
 
-        graph = new JButton("Graphs");
+        graph = new JButton("Graphs"); //Creates new button and sets bounds and size
         graph.setBounds(375, 460, 250, 75);
         graph.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent j){
-                graphs();
+                graphs(); //If button is pressed, calls on graphs method and sets frame visibility to false
                 frame.setVisible(false);
             }
         });
         
         frame.add(title); //Add title to frame
         frame.add(formula); //Add button to frame
-        frame.add(graph);
-        title.setFont(new Font("Courier", Font.BOLD, 50));
+        frame.add(graph); //Add button to frame
+        title.setFont(new Font("Courier", Font.BOLD, 50)); //Sets font size and font for title
         frame.setSize(1000, 1000); //Set frame size
         frame.setLayout(null); //Set layout
         frame.setVisible(true); //Determine if frame is visible and interactable
